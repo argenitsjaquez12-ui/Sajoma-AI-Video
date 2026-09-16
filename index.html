@@ -9,46 +9,160 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f6f8fb;color:#172033}
-header{background:#07111f;color:white;padding:20px 18px 28px;border-radius:0 0 28px 28px}
-.logo{font-size:24px;font-weight:800;letter-spacing:.5px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f6f8fb;
+  color:#172033;
+}
+header{
+  background:#07111f;
+  color:white;
+  padding:20px 18px 28px;
+  border-radius:0 0 28px 28px;
+}
+.logo{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
 .logo span{color:#25d5c5}
 .sub{margin-top:6px;color:#aab6c7;font-size:14px}
 main{max-width:850px;margin:auto;padding:18px}
-.card{background:white;border:1px solid #e3e7ee;border-radius:22px;padding:18px;margin-bottom:16px;box-shadow:0 8px 30px rgba(20,30,50,.06)}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tab{border:1px solid #dfe5ed;background:#fff;border-radius:15px;padding:15px;font-weight:700;font-size:15px}
-.tab.active{background:#e9fffc;border-color:#19bdb0;color:#087d75}
-label{display:block;font-weight:700;margin:18px 0 8px}
-textarea,select{width:100%;border:1px solid #d8dee8;border-radius:15px;padding:15px;font-size:16px;background:#fbfcfe}
+.card{
+  background:white;
+  border:1px solid #e3e7ee;
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 8px 30px rgba(20,30,50,.06);
+}
+.tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.tab{
+  border:1px solid #dfe5ed;
+  background:#fff;
+  border-radius:15px;
+  padding:15px;
+  font-weight:700;
+  font-size:15px;
+}
+.tab.active{
+  background:#e9fffc;
+  border-color:#19bdb0;
+  color:#087d75;
+}
+label{
+  display:block;
+  font-weight:700;
+  margin:18px 0 8px;
+}
+textarea,select{
+  width:100%;
+  border:1px solid #d8dee8;
+  border-radius:15px;
+  padding:15px;
+  font-size:16px;
+  background:#fbfcfe;
+}
 textarea{min-height:130px;resize:vertical}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.option{border:1px solid #d8dee8;border-radius:14px;padding:13px;background:white}
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.option{
+  border:1px solid #d8dee8;
+  border-radius:14px;
+  padding:13px;
+  background:white;
+}
 .option input{margin-right:7px}
-button{border:0;border-radius:16px;padding:16px;font-size:16px;font-weight:800;cursor:pointer}
-.generate{width:100%;background:#16c8bb;color:#062d2a;margin-top:20px}
-.status{margin-top:15px;padding:15px;border-radius:15px;background:#fff6e8;color:#77521b;font-size:14px;line-height:1.5}
-.preview{min-height:260px;border-radius:20px;background:linear-gradient(145deg,#07111f,#172b45);display:flex;align-items:center;justify-content:center;text-align:center;color:white;padding:25px}
+button{
+  border:0;
+  border-radius:16px;
+  padding:16px;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+.generate{
+  width:100%;
+  background:#16c8bb;
+  color:#062d2a;
+  margin-top:20px;
+}
+.generate:active{transform:scale(.99)}
+.status{
+  margin-top:15px;
+  padding:15px;
+  border-radius:15px;
+  background:#fff6e8;
+  color:#77521b;
+  font-size:14px;
+  line-height:1.5;
+}
+.preview{
+  min-height:260px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#07111f,#172b45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:25px;
+}
 .preview-icon{font-size:50px;margin-bottom:10px}
 .preview p{color:#b9c6d7;margin-top:8px}
-.bottom{position:sticky;bottom:0;background:rgba(246,248,251,.95);padding:10px 0}
-.nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.nav button{background:white;border:1px solid #e0e5ec;padding:12px 5px;font-size:13px}
-.section-title{font-size:22px;font-weight:800;margin-bottom:5px}
+.bottom{
+  position:sticky;
+  bottom:0;
+  background:rgba(246,248,251,.95);
+  padding:10px 0;
+}
+.nav{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+}
+.nav button{
+  background:white;
+  border:1px solid #e0e5ec;
+  padding:12px 5px;
+  font-size:13px;
+}
+.section-title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:5px;
+}
 .small{font-size:13px;color:#697589}
 .hidden{display:none!important}
-.video-list{display:grid;gap:10px}
-.empty{text-align:center;padding:30px 10px;color:#738095}
+.video-list{
+  display:grid;
+  gap:10px;
+}
+.empty{
+  text-align:center;
+  padding:30px 10px;
+  color:#738095;
+}
 footer{text-align:center;color:#8993a3;font-size:12px;padding:20px}
-@media(max-width:520px){main{padding:12px}.options{grid-template-columns:1fr}}
+@media(max-width:520px){
+  main{padding:12px}
+  .options{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">SAJOMA <span>AI VIDEO</span></div>
-<div class="sub">Crea videos con inteligencia artificial</div>
+  <div class="logo">SAJOMA <span>AI VIDEO</span></div>
+  <div class="sub">Crea videos con inteligencia artificial</div>
 </header>
 
 <main>
@@ -56,389 +170,328 @@ footer{text-align:center;color:#8993a3;font-size:12px;padding:20px}
 <section id="crear">
 
 <div class="card">
-<div class="section-title">Crear un video</div>
-<div class="small">Convierte una idea en un video generado por IA.</div>
+  <div class="section-title">Crear un video</div>
+  <div class="small">Convierte una idea o una foto en un proyecto de video.</div>
 </div>
 
 <div class="card">
+  <div class="tabs">
+    <button class="tab active" id="textTab" onclick="setMode('text')">
+      ✍️ Texto a video
+    </button>
+    <button class="tab" id="photoTab" onclick="setMode('photo')">
+      🖼️ Foto a video
+    </button>
+  </div>
 
-<div class="tabs">
-<button class="tab active" id="textTab" onclick="setMode('text')">✍️ Texto a video</button>
-<button class="tab" id="photoTab" onclick="setMode('photo')">🖼️ Foto a video</button>
-</div>
+  <div id="textMode">
+    <label for="idea">Tu idea</label>
+    <textarea id="idea" maxlength="500"
+      placeholder="Ejemplo: Una pareja bailando bachata en Santo Domingo al atardecer, cámara cinematográfica, luces cálidas..."></textarea>
+  </div>
 
-<div id="textMode">
-<label>Tu idea</label>
-<textarea id="idea" maxlength="500" placeholder="Ejemplo: Una pareja bailando bachata en Santo Domingo al atardecer, cámara cinematográfica y estilo realista..."></textarea>
-</div>
+  <div id="photoMode" class="hidden">
+    <label for="photo">Selecciona una foto</label>
+    <input id="photo" type="file" accept="image/*">
+  </div>
 
-<div id="photoMode" class="hidden">
-<label>Selecciona una foto</label>
-<input id="photo" type="file" accept="image/*">
-</div>
+  <label>Duración</label>
+  <div class="options">
+    <label class="option"><input type="radio" name="duration" value="4">4 segundos</label>
+    <label class="option"><input type="radio" name="duration" value="6" checked>6 segundos</label>
+    <label class="option"><input type="radio" name="duration" value="8">8 segundos</label>
+  </div>
 
-<label>Duración</label>
-<div class="options">
-<label class="option"><input type="radio" name="duration" value="4">4 segundos</label>
-<label class="option"><input type="radio" name="duration" value="6" checked>6 segundos</label>
-<label class="option"><input type="radio" name="duration" value="8">8 segundos</label>
-</div>
+  <label>Formato</label>
+  <div class="options">
+    <label class="option"><input type="radio" name="format" value="9:16" checked>📱 Vertical 9:16</label>
+    <label class="option"><input type="radio" name="format" value="16:9">🖥️ Horizontal 16:9</label>
+  </div>
 
-<label>Formato</label>
-<div class="options">
-<label class="option"><input type="radio" name="format" value="9:16" checked>📱 Vertical 9:16</label>
-<label class="option"><input type="radio" name="format" value="16:9">🖥️ Horizontal 16:9</label>
-</div>
+  <label for="style">Estilo visual</label>
+  <select id="style">
+    <option>Cinematográfico</option>
+    <option>Realista</option>
+    <option>Anime</option>
+    <option>3D</option>
+    <option>Documental</option>
+    <option>Romántico</option>
+  </select>
 
-<label>Estilo visual</label>
-<select id="style">
-<option>Cinematográfico</option>
-<option>Realista</option>
-<option>Anime</option>
-<option>3D</option>
-<option>Documental</option>
-<option>Romántico</option>
-</select>
+  <label for="voice">Voz en español</label>
+  <select id="voice">
+    <option>Sin voz</option>
+    <option>Clara · español</option>
+    <option>Mateo · español</option>
+  </select>
 
-<label>Voz en español</label>
-<select id="voice">
-<option>Sin voz</option>
-<option>Clara · español</option>
-<option>Mateo · español</option>
-</select>
+  <label for="music">Música</label>
+  <select id="music">
+    <option>Sin música</option>
+    <option>Ambiental</option>
+    <option>Romántica</option>
+    <option>Bachata</option>
+    <option>Instrumental</option>
+  </select>
 
-<label>Música</label>
-<select id="music">
-<option>Sin música</option>
-<option>Ambiental</option>
-<option>Romántica</option>
-<option>Bachata</option>
-<option>Instrumental</option>
-</select>
+  <button class="generate" onclick="generateVideo()">
+    ✨ Generar video con IA
+  </button>
 
-<button class="generate" onclick="generateVideo()">✨ Generar video con IA</button>
-
-<div class="status" id="status">
-<strong>Estado:</strong><br>
-Listo para generar un video real con IA.
-</div>
-
+  <div class="status">
+    <strong>Estado:</strong><br>
+    El generador IA real se conectará mediante un proveedor externo.
+    No se simularán videos.
+  </div>
 </div>
 
 <div class="card">
-<div class="section-title">Vista previa</div>
-
-<div class="preview" id="preview">
-<div>
-<div class="preview-icon">🎬</div>
-<strong id="previewTitle">Tu video aparecerá aquí</strong>
-<p id="previewText">Escribe una idea y pulsa Generar video con IA.</p>
-</div>
-</div>
-
+  <div class="section-title">Vista previa</div>
+  <div class="preview">
+    <div>
+      <div class="preview-icon">🎬</div>
+      <strong id="previewTitle">Tu video aparecerá aquí</strong>
+      <p>Configura tu proyecto y conecta el proveedor de IA.</p>
+    </div>
+  </div>
 </div>
 
 </section>
 
 <section id="videos" class="hidden">
+  <div class="card">
+    <div class="section-title">Mis videos</div>
+    <div class="small">Tus proyectos guardados en este dispositivo.</div>
+  </div>
 
-<div class="card">
-<div class="section-title">Mis videos</div>
-<div class="small">Videos generados guardados en este dispositivo.</div>
-</div>
-
-<div class="card">
-<div id="videoList" class="video-list">
-<div class="empty">🎬<br><br>Todavía no tienes videos.</div>
-</div>
-</div>
-
+  <div class="card">
+    <div id="videoList" class="video-list">
+      <div class="empty">
+        🎬<br><br>
+        Todavía no tienes videos guardados.
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="ajustes" class="hidden">
+  <div class="card">
+    <div class="section-title">Ajustes</div>
+    <p class="small" style="margin-top:8px">
+      Sajoma AI Video
+    </p>
 
-<div class="card">
-<div class="section-title">Ajustes</div>
+    <label>Proveedor de video</label>
+    <div class="status">
+      🔴 No conectado<br>
+      <span class="small">
+        La generación real requiere una API de video configurada de forma segura.
+      </span>
+    </div>
 
-<label>Proveedor de video</label>
-
-<div class="status">
-🟢 Generador IA conectado
-<br>
-<span class="small">Sajoma AI Video está conectado al servidor seguro.</span>
-</div>
-
-<label>Idioma</label>
-<select>
-<option>Español</option>
-</select>
-
-</div>
-
+    <label>Idioma</label>
+    <select>
+      <option>Español</option>
+    </select>
+  </div>
 </section>
 
 <div class="bottom">
-<div class="nav">
-<button onclick="showSection('crear')">✨ Crear</button>
-<button onclick="showSection('videos')">📁 Mis videos</button>
-<button onclick="showSection('ajustes')">⚙️ Ajustes</button>
-</div>
+  <div class="nav">
+    <button onclick="showSection('crear')">✨ Crear</button>
+    <button onclick="showSection('videos')">📁 Mis videos</button>
+    <button onclick="showSection('ajustes')">⚙️ Ajustes</button>
+  </div>
 </div>
 
 </main>
 
 <footer>
-Sajoma AI Video · Proyecto gratuito
+  Sajoma AI Video · Proyecto gratuito
 </footer>
 
 <script>
-
-const API="https://sajoma-ai-video.argenitsjaquez12.workers.dev";
-
 let mode="text";
 
 function setMode(value){
-
-mode=value;
-
-document.getElementById("textMode").classList.toggle("hidden",value!=="text");
-
-document.getElementById("photoMode").classList.toggle("hidden",value!=="photo");
-
-document.getElementById("textTab").classList.toggle("active",value==="text");
-
-document.getElementById("photoTab").classList.toggle("active",value==="photo");
-
+  mode=value;
+  document.getElementById("textMode").classList.toggle("hidden",value!=="text");
+  document.getElementById("photoMode").classList.toggle("hidden",value!=="photo");
+  document.getElementById("textTab").classList.toggle("active",value==="text");
+  document.getElementById("photoTab").classList.toggle("active",value==="photo");
 }
 
 function showSection(id){
-
-["crear","videos","ajustes"].forEach(x=>{
-document.getElementById(x).classList.toggle("hidden",x!==id);
-});
-
-if(id==="videos") loadVideos();
-
-window.scrollTo({top:0,behavior:"smooth"});
-
+  ["crear","videos","ajustes"].forEach(x=>{
+    document.getElementById(x).classList.toggle("hidden",x!==id);
+  });
+  if(id==="videos") loadVideos();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 async function generateVideo(){
+  const idea=document.getElementById("idea").value.trim();
+  const status=document.querySelector(".status");
+  const previewTitle=document.getElementById("previewTitle");
+  const duration=Number(document.querySelector('input[name="duration"]:checked')?.value || "6");
+  const format=document.querySelector('input[name="format"]:checked')?.value || "9:16";
+  const style=document.getElementById("style").value;
+  const voice=document.getElementById("voice").value;
+  const music=document.getElementById("music").value;
 
-const idea=document.getElementById("idea").value.trim();
+  if(mode!=="text"){
+    alert("Primero vamos a terminar Texto a video. Foto a video se conectará después.");
+    return;
+  }
 
-const status=document.getElementById("status");
+  if(!idea){
+    alert("Escribe primero la idea del video.");
+    return;
+  }
 
-const preview=document.getElementById("preview");
+  const prompt = `${idea}. Estilo visual: ${style}. Composición ${format}. Movimiento cinematográfico suave y realista. Voz: ${voice}. Música: ${music}.`;
 
-const duration=document.querySelector('input[name="duration"]:checked')?.value||"6";
+  status.innerHTML="<strong>Estado:</strong><br>Conectando con Lightricks…";
+  previewTitle.textContent="Generando video con IA…";
 
-const format=document.querySelector('input[name="format"]:checked')?.value||"9:16";
+  try{
+    // Importamos el cliente oficial de Gradio directamente en el navegador.
+    // Esto es importante porque el Space usa ZeroGPU y Hugging Face indica
+    // que el cliente JS del navegador maneja los encabezados necesarios.
+    const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js");
 
-const style=document.getElementById("style").value;
+    status.innerHTML="<strong>Estado:</strong><br>Conectado. Enviando el video a la IA…";
+    const app = await Client.connect("Lightricks/ltx-video-distilled");
 
-const voice=document.getElementById("voice").value;
+    // El Space actual recibe estos parámetros en este orden.
+    // Usamos una resolución moderada para reducir el consumo de GPU.
+    const height = format === "9:16" ? 704 : 512;
+    const width  = format === "9:16" ? 512 : 704;
+    const safeDuration = Math.max(0.3, Math.min(8.5, duration));
 
-const music=document.getElementById("music").value;
+    const payload = [
+      prompt,
+      "worst quality, inconsistent motion, blurry, jittery, distorted",
+      null,
+      null,
+      height,
+      width,
+      "text-to-video",
+      safeDuration,
+      9,
+      42,
+      true,
+      1.0,
+      false
+    ];
 
-if(mode==="text"&&!idea){
+    const job = app.submit("/text_to_video", payload);
 
-alert("Escribe primero la idea del video.");
+    let videoUrl = null;
+    let lastStage = "pending";
 
-return;
+    for await (const message of job) {
+      if(message.type === "status"){
+        const stage = message.stage || lastStage;
+        lastStage = stage;
 
-}
+        if(stage === "pending"){
+          const pos = Number.isFinite(message.position) ? ` Posición: ${message.position}.` : "";
+          status.innerHTML=`<strong>Estado:</strong><br>⏳ En cola en Hugging Face.${pos}`;
+        }else if(stage === "generating"){
+          status.innerHTML="<strong>Estado:</strong><br>🎬 La IA está generando tu video…";
+        }else if(stage === "complete"){
+          status.innerHTML="<strong>Estado:</strong><br>✅ Generación terminada. Preparando video…";
+        }else if(stage === "error"){
+          throw new Error(message.message || "Hugging Face no pudo completar la generación.");
+        }
+      }
 
-if(mode==="photo"){
+      if(message.type === "data" && Array.isArray(message.data)){
+        const file = message.data[0];
+        if(file && typeof file === "object"){
+          videoUrl = file.url || null;
+        }else if(typeof file === "string"){
+          videoUrl = file;
+        }
+      }
+    }
 
-alert("Foto a video todavía necesita almacenamiento seguro para la imagen.");
+    if(!videoUrl){
+      throw new Error("La IA terminó, pero no devolvió el archivo de video.");
+    }
 
-return;
+    const preview=document.querySelector(".preview");
+    preview.innerHTML=
+      '<div style="width:100%">'+
+      '<video controls playsinline style="width:100%;border-radius:16px" src="'+escapeHTML(videoUrl)+'"></video>'+
+      '<p style="margin-top:10px">Video generado con IA por Lightricks.</p>'+
+      '</div>';
 
-}
-
-const prompt=
-`${idea}. Estilo visual: ${style}. Composición: ${format}. Duración aproximada: ${duration} segundos. Voz: ${voice}. Música: ${music}.`;
-
-status.innerHTML="<strong>Estado:</strong><br>⏳ Enviando la solicitud a la IA...";
-
-preview.innerHTML=
-"<div><div class='preview-icon'>⏳</div><strong>Generando video...</strong><p>La inteligencia artificial está trabajando.</p></div>";
-
-try{
-
-const response=await fetch(API+"/generate",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-prompt:prompt,
-duration:Number(duration),
-format:format,
-style:style,
-voice:voice,
-music:music
-})
-
-});
-
-const data=await response.json().catch(()=>({}));
-
-if(!response.ok||!data.ok){
-
-throw new Error(data.error||"No se pudo iniciar la generación.");
-
-}
-
-status.innerHTML="<strong>Estado:</strong><br>⏳ Video en proceso...";
-
-await pollVideo(data.request_id);
-
-}catch(error){
-
-status.innerHTML="<strong>Estado:</strong><br>❌ "+escapeHTML(error.message);
-
-preview.innerHTML=
-"<div><div class='preview-icon'>⚠️</div><strong>No se pudo generar</strong><p>"+escapeHTML(error.message)+"</p></div>";
-
-}
-
-}
-
-async function pollVideo(requestId){
-
-const status=document.getElementById("status");
-
-const preview=document.getElementById("preview");
-
-for(let attempt=0;attempt<60;attempt++){
-
-await new Promise(resolve=>setTimeout(resolve,5000));
-
-const response=await fetch(
-API+"/status?id="+encodeURIComponent(requestId)
-);
-
-const data=await response.json().catch(()=>({}));
-
-if(!response.ok||!data.ok){
-
-throw new Error(data.error||"No se pudo consultar el video.");
-
-}
-
-if(data.status==="COMPLETED"&&data.media_url){
-
-const url=Array.isArray(data.media_url)
-?data.media_url[0]
-:data.media_url;
-
-preview.innerHTML=
-"<div style='width:100%'>"+
-"<video controls playsinline style='width:100%;border-radius:16px' src='"+escapeHTML(url)+"'></video>"+
-"<p style='margin-top:10px'>✅ Video generado con IA.</p>"+
-"</div>";
-
-status.innerHTML="<strong>Estado:</strong><br>✅ Video terminado.";
-
-saveGeneratedVideo(url);
-
-return;
-
-}
-
-if(data.status==="FAILED"||data.status==="ERROR"){
-
-throw new Error(data.error||"La IA no pudo generar el video.");
-
-}
-
-status.innerHTML=
-"<strong>Estado:</strong><br>⏳ La IA está procesando el video...";
-
-}
-
-throw new Error("La generación está tardando más de lo esperado.");
-
+    status.innerHTML="<strong>Estado:</strong><br>✅ Video terminado.";
+    previewTitle.textContent="Tu video está listo";
+    saveGeneratedVideo(videoUrl);
+  }catch(error){
+    console.error(error);
+    status.innerHTML="<strong>Estado:</strong><br>❌ "+escapeHTML(error?.message || "No se pudo generar el video.");
+    previewTitle.textContent="No se pudo generar todavía";
+  }
 }
 
 function saveGeneratedVideo(url){
+  const projects=JSON.parse(localStorage.getItem("sajomaProjects")||"[]");
+  const idea=document.getElementById("idea").value.trim();
 
-const projects=
-JSON.parse(localStorage.getItem("sajomaProjects")||"[]");
+  projects.unshift({
+    idea:idea,
+    videoUrl:url,
+    date:new Date().toLocaleString("es-US")
+  });
 
-projects.unshift({
+  localStorage.setItem("sajomaProjects",JSON.stringify(projects));
+}
 
-idea:document.getElementById("idea").value.trim(),
+function saveProject(){
+  const idea=document.getElementById("idea").value.trim();
+  if(!idea){
+    alert("Escribe una idea primero.");
+    return;
+  }
 
-videoUrl:url,
+  const projects=JSON.parse(localStorage.getItem("sajomaProjects")||"[]");
 
-date:new Date().toLocaleString("es-US")
+  projects.unshift({
+    idea:idea,
+    date:new Date().toLocaleString("es-US")
+  });
 
-});
-
-localStorage.setItem("sajomaProjects",JSON.stringify(projects));
-
+  localStorage.setItem("sajomaProjects",JSON.stringify(projects));
+  alert("Proyecto guardado.");
 }
 
 function loadVideos(){
+  const projects=JSON.parse(localStorage.getItem("sajomaProjects")||"[]");
+  const list=document.getElementById("videoList");
 
-const projects=
-JSON.parse(localStorage.getItem("sajomaProjects")||"[]");
+  if(!projects.length){
+    list.innerHTML='<div class="empty">🎬<br><br>Todavía no tienes videos guardados.</div>';
+    return;
+  }
 
-const list=document.getElementById("videoList");
-
-if(!projects.length){
-
-list.innerHTML=
-'<div class="empty">🎬<br><br>Todavía no tienes videos.</div>';
-
-return;
-
-}
-
-list.innerHTML=projects.map(p=>`
-
-<div class="card">
-
-<strong>${escapeHTML(p.idea)}</strong>
-
-<div class="small" style="margin-top:7px">
-${escapeHTML(p.date)}
-</div>
-
-${p.videoUrl?
-`<video controls playsinline style="width:100%;margin-top:10px;border-radius:14px" src="${escapeHTML(p.videoUrl)}"></video>`
-:""}
-
-</div>
-
-`).join("");
-
+  list.innerHTML=projects.map(p=>`
+    <div class="card">
+      <strong>${escapeHTML(p.idea || "Video")}</strong>
+      <div class="small" style="margin-top:7px">${escapeHTML(p.date || "")}</div>
+      ${p.videoUrl ? `<video controls playsinline style="width:100%;margin-top:10px;border-radius:14px" src="${escapeHTML(p.videoUrl)}"></video>` : ""}
+    </div>
+  `).join("");
 }
 
 function escapeHTML(text){
-
-return String(text).replace(/[&<>"']/g,function(c){
-
-return{
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-}[c];
-
-});
-
+  return String(text ?? "").replace(/[&<>"']/g,function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c];
+  });
 }
-
 </script>
 
 </body>
