@@ -355,16 +355,11 @@ async function generateVideo(){
   previewTitle.textContent="Generando video con IA…";
 
   try{
-    // Importamos el cliente oficial de Gradio directamente en el navegador.
-    // Esto es importante porque el Space usa ZeroGPU y Hugging Face indica
-    // que el cliente JS del navegador maneja los encabezados necesarios.
     const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js");
-
-    status.innerHTML="<strong>Estado:</strong><br>Conectado. Enviando el video a la IA…";
     const app = await Client.connect("Lightricks/ltx-video-distilled");
 
-    // El Space actual recibe estos parámetros en este orden.
-    // Usamos una resolución moderada para reducir el consumo de GPU.
+    status.innerHTML="<strong>Estado:</strong><br>🎬 La IA está generando tu video…";
+
     const height = format === "9:16" ? 704 : 512;
     const width  = format === "9:16" ? 512 : 704;
     const safeDuration = Math.max(0.3, Math.min(8.5, duration));
@@ -385,40 +380,23 @@ async function generateVideo(){
       false
     ];
 
-    const job = app.submit("/text_to_video", payload);
+    // predict() espera a que termine y devuelve directamente los outputs.
+    // Esto evita perder el archivo cuando el evento de submit termina antes
+    // de que el navegador reciba el FileData del video.
+    const result = await app.predict("/text_to_video", payload);
+    console.log("Respuesta completa de Lightricks:", result);
 
-    let videoUrl = null;
-    let lastStage = "pending";
+    const data = result?.data;
+    const file = Array.isArray(data) ? data[0] : data;
 
-    for await (const message of job) {
-      if(message.type === "status"){
-        const stage = message.stage || lastStage;
-        lastStage = stage;
-
-        if(stage === "pending"){
-          const pos = Number.isFinite(message.position) ? ` Posición: ${message.position}.` : "";
-          status.innerHTML=`<strong>Estado:</strong><br>⏳ En cola en Hugging Face.${pos}`;
-        }else if(stage === "generating"){
-          status.innerHTML="<strong>Estado:</strong><br>🎬 La IA está generando tu video…";
-        }else if(stage === "complete"){
-          status.innerHTML="<strong>Estado:</strong><br>✅ Generación terminada. Preparando video…";
-        }else if(stage === "error"){
-          throw new Error(message.message || "Hugging Face no pudo completar la generación.");
-        }
-      }
-
-      if(message.type === "data" && Array.isArray(message.data)){
-        const file = message.data[0];
-        if(file && typeof file === "object"){
-          videoUrl = file.url || null;
-        }else if(typeof file === "string"){
-          videoUrl = file;
-        }
-      }
-    }
+    const videoUrl =
+      file?.url ||
+      file?.video?.url ||
+      (typeof file === "string" && /^https?:\/\//i.test(file) ? file : null);
 
     if(!videoUrl){
-      throw new Error("La IA terminó, pero no devolvió el archivo de video.");
+      console.error("Lightricks devolvió:", data);
+      throw new Error("La IA terminó, pero no devolvió una URL pública para el video.");
     }
 
     const preview=document.querySelector(".preview");
