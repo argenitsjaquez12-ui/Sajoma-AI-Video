@@ -28,18 +28,18 @@
     header {
       background: #111827;
       color: white;
-      padding: 18px;
+      padding: 20px;
       text-align: center;
     }
 
     header h1 {
       margin: 0;
-      font-size: 26px;
+      font-size: 28px;
     }
 
     header p {
-      margin: 6px 0 0;
-      opacity: .8;
+      margin: 7px 0 0;
+      opacity: .85;
     }
 
     .container {
@@ -49,10 +49,10 @@
 
     .card {
       background: white;
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+      box-shadow: 0 5px 22px rgba(0,0,0,.08);
     }
 
     .tabs {
@@ -63,10 +63,11 @@
 
     .tab {
       flex: 1;
-      padding: 13px;
+      padding: 14px;
       border: 0;
-      border-radius: 12px;
+      border-radius: 13px;
       background: #e5e7eb;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -78,57 +79,59 @@
 
     label {
       display: block;
+      margin: 15px 0 8px;
       font-weight: bold;
-      margin: 14px 0 7px;
+      font-size: 17px;
     }
 
     textarea,
     select,
     input[type="file"] {
       width: 100%;
-      padding: 13px;
+      padding: 14px;
       border: 1px solid #d1d5db;
-      border-radius: 12px;
+      border-radius: 13px;
       font-size: 16px;
       background: white;
     }
 
     textarea {
-      min-height: 130px;
+      min-height: 140px;
       resize: vertical;
     }
 
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
 
-    button.generate {
+    .generate {
       width: 100%;
-      margin-top: 22px;
-      padding: 16px;
+      margin-top: 24px;
+      padding: 17px;
       border: 0;
-      border-radius: 14px;
+      border-radius: 15px;
       background: #111827;
       color: white;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    button.generate:disabled {
-      opacity: .5;
+    .generate:disabled {
+      opacity: .55;
       cursor: wait;
     }
 
     .status {
       margin-top: 16px;
-      padding: 13px;
-      border-radius: 12px;
+      padding: 14px;
+      border-radius: 13px;
       background: #f3f4f6;
       text-align: center;
       font-weight: bold;
+      word-break: break-word;
     }
 
     .preview {
@@ -141,17 +144,17 @@
 
     video {
       width: 100%;
-      max-height: 600px;
-      border-radius: 15px;
-      background: #000;
+      max-height: 650px;
+      border-radius: 16px;
+      background: black;
       display: none;
     }
 
     .download {
       display: none;
-      margin-top: 15px;
-      padding: 14px 20px;
-      border-radius: 12px;
+      margin-top: 16px;
+      padding: 14px 22px;
+      border-radius: 13px;
       background: #111827;
       color: white;
       text-decoration: none;
@@ -162,12 +165,8 @@
       display: none;
     }
 
-    .history {
-      margin-top: 15px;
-    }
-
     .history-item {
-      padding: 12px;
+      padding: 12px 0;
       border-bottom: 1px solid #e5e7eb;
     }
 
@@ -191,14 +190,19 @@
 
 <header>
   <h1>🍓 Sajoma AI Video</h1>
-  <p>Genera videos con inteligencia artificial</p>
+  <p>Genera videos reales con inteligencia artificial</p>
 </header>
 
 <div class="container">
 
+  <!-- ======================================================
+       CREADOR
+       ====================================================== -->
+
   <div class="card">
 
     <div class="tabs">
+
       <button
         id="textTab"
         class="tab active"
@@ -212,7 +216,11 @@
         type="button">
         🖼️ Foto → Video
       </button>
+
     </div>
+
+
+    <!-- TEXTO -->
 
     <div id="textPanel">
 
@@ -227,6 +235,9 @@
 
     </div>
 
+
+    <!-- FOTO -->
+
     <div id="photoPanel" class="photo-box">
 
       <label for="photo">
@@ -240,95 +251,188 @@
       >
 
       <p>
-        La generación desde foto se incorporará cuando
-        conectemos el modelo de imagen a video.
+        La función Foto → Video requiere conectar
+        un modelo de imagen a video.
       </p>
 
     </div>
 
+
+    <!-- OPCIONES -->
+
     <div class="grid">
 
       <div>
+
         <label for="duration">
           ⏱️ Duración
         </label>
 
         <select id="duration">
-          <option>4 segundos</option>
-          <option>6 segundos</option>
-          <option>8 segundos</option>
+
+          <option value="4 segundos">
+            4 segundos
+          </option>
+
+          <option value="6 segundos">
+            6 segundos
+          </option>
+
+          <option value="8 segundos">
+            8 segundos
+          </option>
+
         </select>
+
       </div>
 
+
       <div>
+
         <label for="format">
           📱 Formato
         </label>
 
         <select id="format">
-          <option>Vertical 9:16</option>
-          <option>Horizontal 16:9</option>
+
+          <option value="Vertical 9:16">
+            Vertical 9:16
+          </option>
+
+          <option value="Horizontal 16:9">
+            Horizontal 16:9
+          </option>
+
         </select>
+
       </div>
 
+
       <div>
+
         <label for="style">
           🎨 Estilo
         </label>
 
         <select id="style">
-          <option>Cinematográfico</option>
-          <option>Realista</option>
-          <option>Animado</option>
-          <option>Infantil</option>
-          <option>Cuento mágico</option>
-          <option>Documental</option>
-          <option>Urbano</option>
-          <option>Romántico</option>
+
+          <option value="Cinematográfico">
+            Cinematográfico
+          </option>
+
+          <option value="Realista">
+            Realista
+          </option>
+
+          <option value="Animado">
+            Animado
+          </option>
+
+          <option value="Infantil">
+            Infantil
+          </option>
+
+          <option value="Cuento mágico">
+            Cuento mágico
+          </option>
+
+          <option value="Documental">
+            Documental
+          </option>
+
+          <option value="Urbano">
+            Urbano
+          </option>
+
+          <option value="Romántico">
+            Romántico
+          </option>
+
         </select>
+
       </div>
 
+
       <div>
+
         <label for="voice">
           🎙️ Narración
         </label>
 
         <select id="voice">
-          <option>Español</option>
-          <option>Sin voz</option>
+
+          <option value="Español">
+            Español
+          </option>
+
+          <option value="Sin voz">
+            Sin voz
+          </option>
+
         </select>
+
       </div>
 
+
       <div>
+
         <label for="music">
           🎵 Música
         </label>
 
         <select id="music">
-          <option>Sin música</option>
-          <option>Música suave</option>
-          <option>Bachata</option>
-          <option>Música infantil</option>
+
+          <option value="Sin música">
+            Sin música
+          </option>
+
+          <option value="Música suave">
+            Música suave
+          </option>
+
+          <option value="Bachata">
+            Bachata
+          </option>
+
+          <option value="Música infantil">
+            Música infantil
+          </option>
+
         </select>
+
       </div>
 
     </div>
+
+
+    <!-- BOTÓN -->
 
     <button
       id="generateBtn"
       class="generate"
       type="button">
+
       🎬 GENERAR VIDEO
+
     </button>
+
+
+    <!-- ESTADO -->
 
     <div
       id="status"
       class="status">
+
       Listo para generar
+
     </div>
 
   </div>
 
+
+  <!-- ======================================================
+       PREVISUALIZACIÓN
+       ====================================================== -->
 
   <div class="card preview">
 
@@ -353,19 +457,25 @@
       class="download"
       href="#"
       download="sajoma-ai-video.mp4">
+
       ⬇️ Descargar video
+
     </a>
 
   </div>
 
 
+  <!-- ======================================================
+       HISTORIAL
+       ====================================================== -->
+
   <div class="card">
 
-    <h2>📁 Mis videos</h2>
+    <h2>
+      📁 Mis videos
+    </h2>
 
-    <div
-      id="history"
-      class="history">
+    <div id="history">
       Todavía no tienes videos guardados.
     </div>
 
@@ -375,8 +485,18 @@
 
 
 <script>
+
+  // ========================================================
+  // SERVIDOR KAGGLE
+  // ========================================================
+
   const GRADIO_URL =
     "https://61d253cf93f421ab13.gradio.live";
+
+
+  // ========================================================
+  // ELEMENTOS
+  // ========================================================
 
   const idea =
     document.getElementById("idea");
@@ -430,41 +550,57 @@
     document.getElementById("photoPanel");
 
 
-  // ==========================================================
-  // PESTAÑAS
-  // ==========================================================
+  // ========================================================
+  // PESTAÑA TEXTO
+  // ========================================================
 
-  textTab.addEventListener("click", () => {
+  textTab.addEventListener(
+    "click",
+    () => {
 
-    textTab.classList.add("active");
-    photoTab.classList.remove("active");
+      textTab.classList.add("active");
 
-    textPanel.classList.remove("hidden");
-    photoPanel.classList.add("hidden");
+      photoTab.classList.remove("active");
 
-  });
+      textPanel.classList.remove("hidden");
 
+      photoPanel.classList.add("hidden");
 
-  photoTab.addEventListener("click", () => {
-
-    photoTab.classList.add("active");
-    textTab.classList.remove("active");
-
-    textPanel.classList.add("hidden");
-    photoPanel.classList.remove("hidden");
-
-  });
+    }
+  );
 
 
-  // ==========================================================
+  // ========================================================
+  // PESTAÑA FOTO
+  // ========================================================
+
+  photoTab.addEventListener(
+    "click",
+    () => {
+
+      photoTab.classList.add("active");
+
+      textTab.classList.remove("active");
+
+      textPanel.classList.add("hidden");
+
+      photoPanel.classList.remove("hidden");
+
+    }
+  );
+
+
+  // ========================================================
   // HISTORIAL
-  // ==========================================================
+  // ========================================================
 
   function cargarHistorial() {
 
     const datos =
       JSON.parse(
-        localStorage.getItem("sajomaVideos") || "[]"
+        localStorage.getItem(
+          "sajomaVideos"
+        ) || "[]"
       );
 
     if (!datos.length) {
@@ -477,19 +613,22 @@
 
     history.innerHTML = "";
 
-    datos.forEach((item) => {
+    datos.forEach(
+      (item) => {
 
-      const div =
-        document.createElement("div");
+        const div =
+          document.createElement("div");
 
-      div.className = "history-item";
+        div.className =
+          "history-item";
 
-      div.textContent =
-        "🎬 " + item;
+        div.textContent =
+          "🎬 " + item;
 
-      history.appendChild(div);
+        history.appendChild(div);
 
-    });
+      }
+    );
   }
 
 
@@ -497,14 +636,18 @@
 
     const datos =
       JSON.parse(
-        localStorage.getItem("sajomaVideos") || "[]"
+        localStorage.getItem(
+          "sajomaVideos"
+        ) || "[]"
       );
 
     datos.unshift(texto);
 
     localStorage.setItem(
       "sajomaVideos",
-      JSON.stringify(datos.slice(0, 20))
+      JSON.stringify(
+        datos.slice(0, 20)
+      )
     );
 
     cargarHistorial();
@@ -514,15 +657,16 @@
   cargarHistorial();
 
 
-  // ==========================================================
-  // BUSCAR URL DEL VIDEO
-  // ==========================================================
+  // ========================================================
+  // ENCONTRAR URL DEL VIDEO
+  // ========================================================
 
   function buscarUrl(objeto) {
 
     if (!objeto) {
       return null;
     }
+
 
     if (typeof objeto === "string") {
 
@@ -536,9 +680,12 @@
       return null;
     }
 
+
     if (Array.isArray(objeto)) {
 
-      for (const elemento of objeto) {
+      for (
+        const elemento of objeto
+      ) {
 
         const encontrada =
           buscarUrl(elemento);
@@ -546,12 +693,16 @@
         if (encontrada) {
           return encontrada;
         }
+
       }
 
       return null;
     }
 
-    if (typeof objeto === "object") {
+
+    if (
+      typeof objeto === "object"
+    ) {
 
       const claves = [
         "url",
@@ -560,37 +711,51 @@
         "media_url"
       ];
 
-      for (const clave of claves) {
+
+      for (
+        const clave of claves
+      ) {
 
         if (objeto[clave]) {
 
           const encontrada =
-            buscarUrl(objeto[clave]);
+            buscarUrl(
+              objeto[clave]
+            );
 
           if (encontrada) {
             return encontrada;
           }
+
         }
+
       }
 
-      for (const clave in objeto) {
+
+      for (
+        const clave in objeto
+      ) {
 
         const encontrada =
-          buscarUrl(objeto[clave]);
+          buscarUrl(
+            objeto[clave]
+          );
 
         if (encontrada) {
           return encontrada;
         }
+
       }
+
     }
 
     return null;
   }
 
 
-  // ==========================================================
-  // GENERAR
-  // ==========================================================
+  // ========================================================
+  // GENERAR VIDEO
+  // ========================================================
 
   generateBtn.addEventListener(
     "click",
@@ -598,6 +763,7 @@
 
       const texto =
         idea.value.trim();
+
 
       if (!texto) {
 
@@ -607,47 +773,76 @@
         return;
       }
 
+
       generateBtn.disabled = true;
 
+
       status.textContent =
-        "⏳ Conectando con Sajoma AI...";
+        "🔌 Conectando con Sajoma AI...";
+
 
       previewTitle.textContent =
         "🎬 Generando video...";
 
+
       previewText.textContent =
         "La inteligencia artificial está creando tu video.";
 
-      video.style.display = "none";
 
-      download.style.display = "none";
+      video.pause();
+
+      video.removeAttribute("src");
+
+      video.load();
+
+      video.style.display =
+        "none";
+
+
+      download.style.display =
+        "none";
+
 
       try {
 
         const Client =
           window.SajomaGradioClient;
 
+
         if (!Client) {
 
           throw new Error(
-            "No se pudo cargar el cliente de IA."
+            "No se pudo cargar el cliente de Sajoma AI."
           );
+
         }
 
+
+        // --------------------------------------------------
+        // CONECTAR
+        // --------------------------------------------------
+
         status.textContent =
-          "🔌 Conectando al servidor de Sajoma...";
+          "🔌 Conectando al servidor...";
+
 
         const app =
           await Client.connect(
             GRADIO_URL
           );
 
+
+        // --------------------------------------------------
+        // GENERAR
+        // --------------------------------------------------
+
         status.textContent =
-          "🎥 Generando video con IA...";
+          "🎥 Generando video con inteligencia artificial...";
+
 
         const resultado =
           await app.predict(
-            "/predict",
+            "/generar_video",
             [
               texto,
               duration.value,
@@ -658,30 +853,40 @@
             ]
           );
 
+
         console.log(
-          "Resultado Sajoma:",
+          "Respuesta Sajoma AI:",
           resultado
         );
+
+
+        // --------------------------------------------------
+        // BUSCAR VIDEO
+        // --------------------------------------------------
 
         const videoUrl =
           buscarUrl(resultado);
 
+
         if (!videoUrl) {
 
-          console.log(
-            "Respuesta completa:",
-            resultado
+          throw new Error(
+            "El servidor no devolvió el archivo de video."
           );
 
-          throw new Error(
-            "El servidor terminó, pero no devolvió el video."
-          );
         }
 
-        video.src = videoUrl;
+
+        // --------------------------------------------------
+        // MOSTRAR VIDEO
+        // --------------------------------------------------
+
+        video.src =
+          videoUrl;
 
         video.style.display =
           "block";
+
 
         download.href =
           videoUrl;
@@ -689,48 +894,66 @@
         download.style.display =
           "inline-block";
 
+
         previewTitle.textContent =
           "✅ Video generado correctamente";
+
 
         previewText.textContent =
           "Tu video está listo.";
 
+
         status.textContent =
           "✅ Video generado correctamente.";
 
-        guardarHistorial(texto);
+
+        guardarHistorial(
+          texto
+        );
+
 
       } catch (error) {
 
         console.error(
-          "Error Sajoma:",
+          "ERROR SAJOMA:",
           error
         );
 
+
         status.textContent =
-          "❌ Error de conexión: " +
-          (error.message || "Error desconocido");
+          "❌ Error: " +
+          (
+            error.message ||
+            "Error desconocido"
+          );
+
 
         previewTitle.textContent =
           "❌ No se pudo generar";
 
+
         previewText.textContent =
-          "El servidor de generación no respondió correctamente.";
+          "Revisa el mensaje de error mostrado arriba.";
+
 
         video.style.display =
           "none";
 
+
         download.style.display =
           "none";
+
 
       } finally {
 
         generateBtn.disabled =
           false;
+
       }
 
     }
   );
+
 </script>
 
 </body>
