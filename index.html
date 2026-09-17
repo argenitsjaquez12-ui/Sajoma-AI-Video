@@ -2,795 +2,824 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#08111f">
-<meta name="description" content="Sajoma AI Video - Crea videos con inteligencia artificial">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <title>Sajoma AI Video</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:#f6f8fb;
-color:#172033;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#09090b;
+  color:white;
+}
+
+.app{
+  max-width:700px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:90px;
 }
 
 header{
-background:#07111f;
-color:white;
-padding:20px 18px 28px;
-border-radius:0 0 28px 28px;
+  padding:22px 18px 12px;
+  text-align:center;
 }
 
 .logo{
-font-size:24px;
-font-weight:800;
-letter-spacing:.5px;
+  font-size:28px;
+  font-weight:800;
 }
 
-.logo span{color:#25d5c5}
-
-.sub{
-margin-top:6px;
-color:#aab6c7;
-font-size:14px;
+.logo span{
+  color:#8b5cf6;
 }
 
-main{
-max-width:850px;
-margin:auto;
-padding:18px;
+.subtitle{
+  color:#a1a1aa;
+  margin-top:5px;
+  font-size:14px;
 }
 
 .card{
-background:white;
-border:1px solid #e3e7ee;
-border-radius:22px;
-padding:18px;
-margin-bottom:16px;
-box-shadow:0 8px 30px rgba(20,30,50,.06);
+  margin:14px;
+  padding:18px;
+  background:#18181b;
+  border:1px solid #27272a;
+  border-radius:20px;
 }
 
 .tabs{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+  display:flex;
+  gap:8px;
+  margin-bottom:18px;
 }
 
 .tab{
-border:1px solid #dfe5ed;
-background:#fff;
-border-radius:15px;
-padding:15px;
-font-weight:700;
-font-size:15px;
+  flex:1;
+  padding:12px;
+  border:0;
+  border-radius:12px;
+  background:#27272a;
+  color:white;
+  font-weight:600;
 }
 
 .tab.active{
-background:#e9fffc;
-border-color:#19bdb0;
-color:#087d75;
+  background:#7c3aed;
 }
 
 label{
-display:block;
-font-weight:700;
-margin:18px 0 8px;
+  display:block;
+  margin:14px 0 7px;
+  color:#d4d4d8;
+  font-size:14px;
 }
 
-textarea,select{
-width:100%;
-border:1px solid #d8dee8;
-border-radius:15px;
-padding:15px;
-font-size:16px;
-background:#fbfcfe;
+textarea,
+select{
+  width:100%;
+  background:#09090b;
+  color:white;
+  border:1px solid #3f3f46;
+  border-radius:12px;
+  padding:13px;
+  font-size:16px;
+  outline:none;
 }
 
 textarea{
-min-height:130px;
-resize:vertical;
+  min-height:130px;
+  resize:vertical;
 }
 
-.options{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.option{
-border:1px solid #d8dee8;
-border-radius:14px;
-padding:13px;
-background:white;
-}
-
-.option input{
-margin-right:7px;
-}
-
-button{
-border:0;
-border-radius:16px;
-padding:16px;
-font-size:16px;
-font-weight:800;
-cursor:pointer;
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .generate{
-width:100%;
-background:#16c8bb;
-color:#062d2a;
-margin-top:20px;
+  width:100%;
+  margin-top:18px;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  background:#7c3aed;
+  color:white;
+  font-size:17px;
+  font-weight:800;
+}
+
+.generate:disabled{
+  opacity:.5;
 }
 
 .status{
-margin-top:15px;
-padding:15px;
-border-radius:15px;
-background:#fff6e8;
-color:#77521b;
-font-size:14px;
-line-height:1.5;
+  margin-top:14px;
+  text-align:center;
+  color:#a1a1aa;
+  min-height:24px;
 }
 
-.preview{
-min-height:260px;
-border-radius:20px;
-background:linear-gradient(145deg,#07111f,#172b45);
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-padding:25px;
+.previewTitle{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:12px;
 }
 
-.preview-icon{
-font-size:50px;
-margin-bottom:10px;
+video{
+  width:100%;
+  display:block;
+  border-radius:15px;
+  background:black;
 }
 
-.preview p{
-color:#b9c6d7;
-margin-top:8px;
+.historyItem{
+  padding:12px;
+  border-bottom:1px solid #27272a;
+  color:#d4d4d8;
+  font-size:14px;
 }
 
 .bottom{
-position:sticky;
-bottom:0;
-background:rgba(246,248,251,.95);
-padding:10px 0;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#111113;
+  border-top:1px solid #27272a;
+  padding:12px;
+  text-align:center;
+  z-index:20;
 }
 
-.nav{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:8px;
-}
-
-.nav button{
-background:white;
-border:1px solid #e0e5ec;
-padding:12px 5px;
-font-size:13px;
-}
-
-.section-title{
-font-size:22px;
-font-weight:800;
-margin-bottom:5px;
-}
-
-.small{
-font-size:13px;
-color:#697589;
+.bottom span{
+  color:#a1a1aa;
+  font-size:12px;
 }
 
 .hidden{
-display:none!important;
+  display:none;
 }
 
-.video-list{
-display:grid;
-gap:10px;
+.photoBox{
+  border:1px dashed #52525b;
+  padding:25px;
+  text-align:center;
+  border-radius:15px;
+  color:#a1a1aa;
 }
 
-.empty{
-text-align:center;
-padding:30px 10px;
-color:#738095;
+.error{
+  color:#f87171;
 }
 
-footer{
-text-align:center;
-color:#8993a3;
-font-size:12px;
-padding:20px;
-}
-
-@media(max-width:520px){
-main{padding:12px}
-.options{grid-template-columns:1fr}
+.success{
+  color:#4ade80;
 }
 </style>
 </head>
 
 <body>
 
+<div class="app">
+
 <header>
-<div class="logo">SAJOMA <span>AI VIDEO</span></div>
-<div class="sub">Crea videos con inteligencia artificial</div>
+  <div class="logo">Sajoma <span>AI Video</span></div>
+  <div class="subtitle">Crea videos con inteligencia artificial</div>
 </header>
 
-<main>
-
-<section id="crear">
-
-<div class="card">
-<div class="section-title">Crear un video</div>
-<div class="small">
-Convierte una idea o una foto en un proyecto de video.
-</div>
-</div>
-
 <div class="card">
 
-<div class="tabs">
+  <div class="tabs">
+    <button id="textTab" class="tab active">Texto → Video</button>
+    <button id="photoTab" class="tab">Foto → Video</button>
+  </div>
 
-<button class="tab active" id="textTab" onclick="setMode('text')">
-✍️ Texto a video
-</button>
+  <div id="textPanel">
 
-<button class="tab" id="photoTab" onclick="setMode('photo')">
-🖼️ Foto a video
-</button>
+    <label>Describe tu video</label>
 
-</div>
+    <textarea
+      id="prompt"
+      placeholder="Ejemplo: Una mujer caminando por Santo Domingo al atardecer, estilo cinematográfico, movimiento de cámara suave..."
+    ></textarea>
 
-<div id="textMode">
+    <div class="grid">
 
-<label for="idea">Tu idea</label>
+      <div>
+        <label>Duración</label>
+        <select id="duration">
+          <option value="4">4 segundos</option>
+          <option value="6">6 segundos</option>
+          <option value="8">8 segundos</option>
+        </select>
+      </div>
 
-<textarea
-id="idea"
-maxlength="500"
-placeholder="Ejemplo: Una pareja bailando bachata en Santo Domingo al atardecer, cámara cinematográfica, luces cálidas..."
-></textarea>
+      <div>
+        <label>Formato</label>
+        <select id="format">
+          <option value="9:16">Vertical 9:16</option>
+          <option value="16:9">Horizontal 16:9</option>
+        </select>
+      </div>
 
-</div>
+    </div>
 
-<div id="photoMode" class="hidden">
+    <label>Estilo</label>
 
-<label for="photo">Selecciona una foto</label>
+    <select id="style">
+      <option>Cinematográfico</option>
+      <option>Realista</option>
+      <option>Romántico</option>
+      <option>Musical</option>
+      <option>Urbano</option>
+      <option>Animación</option>
+    </select>
 
-<input
-id="photo"
-type="file"
-accept="image/*"
->
+    <div class="grid">
 
-</div>
+      <div>
+        <label>Voz</label>
+        <select id="voice">
+          <option>Sin voz</option>
+          <option>Español</option>
+        </select>
+      </div>
 
-<label>Duración</label>
+      <div>
+        <label>Música</label>
+        <select id="music">
+          <option>Sin música</option>
+          <option>Bachata</option>
+          <option>Romántica</option>
+          <option>Urbana</option>
+        </select>
+      </div>
 
-<div class="options">
+    </div>
 
-<label class="option">
-<input type="radio" name="duration" value="4">
-4 segundos
-</label>
+    <button id="generate" class="generate">
+      🎬 Generar video con IA
+    </button>
 
-<label class="option">
-<input type="radio" name="duration" value="6" checked>
-6 segundos
-</label>
+  </div>
 
-<label class="option">
-<input type="radio" name="duration" value="8">
-8 segundos
-</label>
+  <div id="photoPanel" class="hidden">
 
-</div>
+    <label>Foto</label>
 
-<label>Formato</label>
+    <div class="photoBox">
+      <input id="photo" type="file" accept="image/*">
+      <p>Selecciona una foto para animarla.</p>
+    </div>
 
-<div class="options">
+    <button
+      class="generate"
+      onclick="alert('La función Foto → Video se conectará después del generador principal.')"
+    >
+      🎬 Animar foto
+    </button>
 
-<label class="option">
-<input type="radio" name="format" value="9:16" checked>
-📱 Vertical 9:16
-</label>
-
-<label class="option">
-<input type="radio" name="format" value="16:9">
-🖥️ Horizontal 16:9
-</label>
-
-</div>
-
-<label for="style">Estilo visual</label>
-
-<select id="style">
-<option>Cinematográfico</option>
-<option>Realista</option>
-<option>Anime</option>
-<option>3D</option>
-<option>Documental</option>
-<option>Romántico</option>
-</select>
-
-<label for="voice">Voz en español</label>
-
-<select id="voice">
-<option>Sin voz</option>
-<option>Clara · español</option>
-<option>Mateo · español</option>
-</select>
-
-<label for="music">Música</label>
-
-<select id="music">
-<option>Sin música</option>
-<option>Ambiental</option>
-<option>Romántica</option>
-<option>Bachata</option>
-<option>Instrumental</option>
-</select>
-
-<button class="generate" onclick="generateVideo()">
-✨ Generar video con IA
-</button>
-
-<div id="status" class="status">
-<strong>Estado:</strong><br>
-Listo para generar tu video.
-</div>
+  </div>
 
 </div>
 
 <div class="card">
 
-<div class="section-title">Vista previa</div>
+  <div id="previewTitle" class="previewTitle">
+    Vista previa
+  </div>
 
-<div class="preview" id="preview">
-
-<div>
-
-<div class="preview-icon">🎬</div>
-
-<strong id="previewTitle">
-Tu video aparecerá aquí
-</strong>
-
-<p>
-Escribe tu idea y genera un video real con IA.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="videos" class="hidden">
-
-<div class="card">
-
-<div class="section-title">Mis videos</div>
-
-<div class="small">
-Tus videos guardados en este dispositivo.
-</div>
+  <div id="preview">
+    <div style="color:#71717a;text-align:center;padding:30px">
+      Tu video aparecerá aquí.
+    </div>
+  </div>
 
 </div>
 
 <div class="card">
 
-<div id="videoList" class="video-list">
+  <div class="previewTitle">Mis videos</div>
 
-<div class="empty">
-🎬<br><br>
-Todavía no tienes videos guardados.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="ajustes" class="hidden">
-
-<div class="card">
-
-<div class="section-title">Ajustes</div>
-
-<p class="small" style="margin-top:8px">
-Sajoma AI Video
-</p>
-
-<label>Generador</label>
-
-<div class="status">
-🟢 Generador IA conectado
-</div>
-
-<label>Idioma</label>
-
-<select>
-<option>Español</option>
-</select>
+  <div id="history">
+    <div style="color:#71717a">
+      Todavía no tienes videos guardados.
+    </div>
+  </div>
 
 </div>
 
-</section>
+</div>
 
 <div class="bottom">
-
-<div class="nav">
-
-<button onclick="showSection('crear')">
-✨ Crear
-</button>
-
-<button onclick="showSection('videos')">
-📁 Mis videos
-</button>
-
-<button onclick="showSection('ajustes')">
-⚙️ Ajustes
-</button>
-
+  <span>Sajoma AI Video • Generación con inteligencia artificial</span>
 </div>
 
-</div>
-
-</main>
-
-<footer>
-Sajoma AI Video · Generador con IA
-</footer>
-
-<script>
-
-let mode="text";
+<script type="module">
 
 const GRADIO_URL =
-"https://d72f377170ddf071fe.gradio.live";
+"https://4b3c748acf8b8934f7.gradio.live";
 
-function setMode(value){
+let Client;
 
-mode=value;
+const textTab =
+document.getElementById("textTab");
 
-document
-.getElementById("textMode")
-.classList
-.toggle("hidden",value!=="text");
+const photoTab =
+document.getElementById("photoTab");
 
-document
-.getElementById("photoMode")
-.classList
-.toggle("hidden",value!=="photo");
+const textPanel =
+document.getElementById("textPanel");
 
-document
-.getElementById("textTab")
-.classList
-.toggle("active",value==="text");
+const photoPanel =
+document.getElementById("photoPanel");
 
-document
-.getElementById("photoTab")
-.classList
-.toggle("active",value==="photo");
+const generate =
+document.getElementById("generate");
 
-}
+const prompt =
+document.getElementById("prompt");
 
-function showSection(id){
-
-["crear","videos","ajustes"].forEach(x=>{
-
-document
-.getElementById(x)
-.classList
-.toggle("hidden",x!==id);
-
-});
-
-if(id==="videos"){
-loadVideos();
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-async function generateVideo(){
-
-const idea =
-document
-.getElementById("idea")
-.value
-.trim();
-
-const status =
+const statusBox =
 document.getElementById("status");
 
 const preview =
 document.getElementById("preview");
 
-if(mode!=="text"){
+const previewTitle =
+document.getElementById("previewTitle");
 
-alert(
-"Foto a video todavía está en preparación. Usa Texto a video."
-);
+const history =
+document.getElementById("history");
 
-return;
 
-}
+/* =========================
+   TABS
+========================= */
 
-if(!idea){
+textTab.onclick = () => {
 
-alert(
-"Escribe primero la idea del video."
-);
+  textTab.classList.add("active");
+  photoTab.classList.remove("active");
 
-return;
+  textPanel.classList.remove("hidden");
+  photoPanel.classList.add("hidden");
 
-}
+};
 
-status.innerHTML =
-"<strong>Estado:</strong><br>" +
-"⏳ Conectando con Sajoma AI…";
+photoTab.onclick = () => {
 
-preview.innerHTML =
-"<div>" +
-"<div class='preview-icon'>⏳</div>" +
-"<strong>Generando video con IA…</strong>" +
-"<p>Esto puede tardar varios minutos.</p>" +
-"</div>";
+  photoTab.classList.add("active");
+  textTab.classList.remove("active");
 
-try{
+  photoPanel.classList.remove("hidden");
+  textPanel.classList.add("hidden");
 
-const module =
-await import(
-"https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"
-);
+};
 
-const Client =
-module.Client;
 
-const app =
-await Client.connect(GRADIO_URL);
+/* =========================
+   STATUS
+========================= */
 
-status.innerHTML =
-"<strong>Estado:</strong><br>" +
-"🎬 La IA está generando tu video…";
+function mostrarEstado(text, clase="") {
 
-const result =
-await app.predict(
-"/predict",
-[idea]
-);
+  let box = document.getElementById("statusBox");
 
-console.log(
-"Respuesta de Kaggle:",
-result
-);
+  if(!box){
 
-const data =
-result?.data;
+    box = document.createElement("div");
 
-let file =
-Array.isArray(data)
-? data[0]
-: data;
+    box.id = "statusBox";
 
-let videoUrl =
-file?.url ||
-file?.video?.url ||
-(
-typeof file==="string" &&
-file.startsWith("http")
-? file
-: null
-);
+    box.className = "status";
 
-if(!videoUrl){
+    generate.parentNode.appendChild(box);
 
-throw new Error(
-"El generador terminó pero no devolvió el archivo de video."
-);
+  }
+
+  box.className = "status " + clase;
+
+  box.textContent = text;
 
 }
 
-preview.innerHTML =
 
-"<div style='width:100%'>" +
+/* =========================
+   BUSCAR URL
+========================= */
 
-"<video " +
-"controls " +
-"playsinline " +
-"style='width:100%;border-radius:16px' " +
-"src='" +
-escapeHTML(videoUrl) +
-"'>" +
+function buscarURL(obj){
 
-"</video>" +
+  if(!obj) return null;
 
-"<p style='margin-top:10px'>" +
-"✅ Video generado con IA" +
-"</p>" +
+  if(typeof obj === "string"){
 
-"</div>";
+    if(
+      obj.startsWith("http://") ||
+      obj.startsWith("https://") ||
+      obj.startsWith("blob:")
+    ){
 
-status.innerHTML =
-"<strong>Estado:</strong><br>" +
-"✅ Video terminado.";
+      return obj;
 
-document
-.getElementById("previewTitle")
-.textContent =
-"Tu video está listo";
+    }
 
-saveVideo(
-idea,
-videoUrl
-);
+    return null;
+  }
 
-}catch(error){
+  if(Array.isArray(obj)){
 
-console.error(error);
+    for(const item of obj){
 
-status.innerHTML =
-"<strong>Estado:</strong><br>" +
-"❌ No se pudo generar el video.";
+      const found = buscarURL(item);
 
-preview.innerHTML =
+      if(found) return found;
 
-"<div>" +
+    }
 
-"<div class='preview-icon'>⚠️</div>" +
+    return null;
 
-"<strong>No se pudo generar</strong>" +
+  }
 
-"<p>" +
-escapeHTML(
-error.message ||
-"Error de generación"
-) +
-"</p>" +
+  if(typeof obj === "object"){
 
-"</div>";
+    const posibles = [
+      obj.url,
+      obj.video,
+      obj.path,
+      obj.data,
+      obj.value
+    ];
 
-}
+    for(const item of posibles){
 
-}
+      const found = buscarURL(item);
 
-function saveVideo(
-idea,
-url
-){
+      if(found) return found;
 
-try{
+    }
 
-const videos =
-JSON.parse(
-localStorage.getItem(
-"sajoma_videos"
-) || "[]"
-);
+    for(const key of Object.keys(obj)){
 
-videos.unshift({
+      const found = buscarURL(obj[key]);
 
-idea:idea,
+      if(found) return found;
 
-url:url,
+    }
 
-date:
-new Date()
-.toLocaleString(
-"es-US"
-)
+  }
 
-});
-
-localStorage.setItem(
-"sajoma_videos",
-JSON.stringify(
-videos.slice(0,20)
-)
-);
-
-}catch(e){
-
-console.error(e);
+  return null;
 
 }
 
-}
 
-function loadVideos(){
+/* =========================
+   GUARDAR HISTORIAL
+========================= */
 
-const videos =
-JSON.parse(
-localStorage.getItem(
-"sajoma_videos"
-) || "[]"
-);
+function guardarVideo(url, texto){
 
-const list =
-document.getElementById(
-"videoList"
-);
+  let videos =
+    JSON.parse(
+      localStorage.getItem("sajoma_videos") || "[]"
+    );
 
-if(!videos.length){
+  videos.unshift({
+    url:url,
+    texto:texto,
+    fecha:new Date().toLocaleString()
+  });
 
-list.innerHTML =
-"<div class='empty'>" +
-"🎬<br><br>" +
-"Todavía no tienes videos guardados." +
-"</div>";
+  videos =
+    videos.slice(0,10);
 
-return;
+  localStorage.setItem(
+    "sajoma_videos",
+    JSON.stringify(videos)
+  );
 
-}
-
-list.innerHTML =
-videos.map(video => `
-
-<div class="card">
-
-<strong>
-${escapeHTML(video.idea)}
-</strong>
-
-<div
-class="small"
-style="margin-top:7px"
->
-${escapeHTML(video.date)}
-</div>
-
-<video
-controls
-playsinline
-style="width:100%;margin-top:10px;border-radius:14px"
-src="${escapeHTML(video.url)}"
-></video>
-
-</div>
-
-`).join("");
+  mostrarHistorial();
 
 }
+
+
+function mostrarHistorial(){
+
+  const videos =
+    JSON.parse(
+      localStorage.getItem("sajoma_videos") || "[]"
+    );
+
+  if(!videos.length){
+
+    history.innerHTML =
+      `<div style="color:#71717a">
+        Todavía no tienes videos guardados.
+      </div>`;
+
+    return;
+
+  }
+
+  history.innerHTML =
+    videos.map((v,i)=>`
+
+      <div class="historyItem">
+
+        <div>
+          🎬 ${escapeHTML(v.texto)}
+        </div>
+
+        <div style="color:#71717a;margin-top:4px">
+          ${v.fecha}
+        </div>
+
+        <button
+          onclick="verVideo(${i})"
+          style="
+            margin-top:8px;
+            padding:8px 12px;
+            border:0;
+            border-radius:8px;
+            background:#27272a;
+            color:white;
+          "
+        >
+          Ver
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
 
 function escapeHTML(text){
 
-return String(text ?? "")
-.replace(
-/[&<>"']/g,
-function(c){
-
-return {
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-"\"":"&quot;",
-"'":"&#39;"
-
-}[c];
-
-});
+  return String(text)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
+
+
+window.verVideo = function(index){
+
+  const videos =
+    JSON.parse(
+      localStorage.getItem("sajoma_videos") || "[]"
+    );
+
+  const v = videos[index];
+
+  if(!v) return;
+
+  mostrarVideo(v.url,v.texto);
+
+};
+
+
+/* =========================
+   MOSTRAR VIDEO
+========================= */
+
+function mostrarVideo(url,texto){
+
+  previewTitle.textContent =
+    "Tu video está listo";
+
+  preview.innerHTML = "";
+
+  const video =
+    document.createElement("video");
+
+  video.controls = true;
+
+  video.playsInline = true;
+
+  video.preload = "metadata";
+
+  video.src = url;
+
+  video.setAttribute(
+    "crossorigin",
+    "anonymous"
+  );
+
+  video.onerror = () => {
+
+    preview.innerHTML = `
+      <div class="error"
+           style="text-align:center;padding:25px">
+
+        El video fue generado,
+        pero el enlace de reproducción
+        ya no está disponible.
+
+      </div>
+    `;
+
+  };
+
+  preview.appendChild(video);
+
+  video.load();
+
+}
+
+
+/* =========================
+   GENERAR
+========================= */
+
+generate.onclick =
+async function(){
+
+  const idea =
+    prompt.value.trim();
+
+  if(!idea){
+
+    mostrarEstado(
+      "❌ Escribe primero una descripción.",
+      "error"
+    );
+
+    prompt.focus();
+
+    return;
+
+  }
+
+  generate.disabled = true;
+
+  previewTitle.textContent =
+    "Generando video...";
+
+  preview.innerHTML = `
+    <div style="
+      text-align:center;
+      padding:35px;
+      color:#a1a1aa;
+    ">
+      <div style="font-size:35px">
+        🎬
+      </div>
+
+      <div style="margin-top:10px">
+        La inteligencia artificial está
+        creando tu video...
+      </div>
+
+      <div style="
+        margin-top:8px;
+        font-size:13px;
+        color:#71717a;
+      ">
+        Puede tardar varios minutos.
+      </div>
+    </div>
+  `;
+
+  mostrarEstado(
+    "⏳ Conectando con Sajoma AI..."
+  );
+
+  try{
+
+    if(!Client){
+
+      const module =
+        await import(
+          "https://cdn.jsdelivr.net/npm/@gradio/client@1.0.0/dist/index.min.js"
+        );
+
+      Client =
+        module.Client;
+
+    }
+
+    mostrarEstado(
+      "⏳ Conectando con el generador..."
+    );
+
+    const app =
+      await Client.connect(
+        GRADIO_URL
+      );
+
+    mostrarEstado(
+      "⏳ Enviando tu video..."
+    );
+
+    const resultado =
+      await app.predict(
+        "/predict",
+        [idea]
+      );
+
+    console.log(
+      "RESULTADO GRADIO:",
+      resultado
+    );
+
+    const url =
+      buscarURL(resultado);
+
+    if(!url){
+
+      console.error(
+        "No se encontró URL:",
+        resultado
+      );
+
+      throw new Error(
+        "El generador terminó pero no devolvió el video."
+      );
+
+    }
+
+    mostrarEstado(
+      "✅ Video generado.",
+      "success"
+    );
+
+    mostrarVideo(
+      url,
+      idea
+    );
+
+    guardarVideo(
+      url,
+      idea
+    );
+
+  }catch(error){
+
+    console.error(
+      "ERROR SAJOMA:",
+      error
+    );
+
+    previewTitle.textContent =
+      "No se pudo generar";
+
+    preview.innerHTML = `
+      <div class="error"
+           style="
+             text-align:center;
+             padding:30px;
+           ">
+
+        ❌ No se pudo generar el video.
+
+        <div style="
+          margin-top:10px;
+          font-size:13px;
+          color:#a1a1aa;
+        ">
+          ${escapeHTML(
+            error?.message ||
+            "Error de conexión con el generador."
+          )}
+        </div>
+
+      </div>
+    `;
+
+    mostrarEstado(
+      "❌ Error de conexión.",
+      "error"
+    );
+
+  }finally{
+
+    generate.disabled = false;
+
+  }
+
+};
+
+
+/* =========================
+   HISTORIAL
+========================= */
+
+mostrarHistorial();
 
 </script>
 
